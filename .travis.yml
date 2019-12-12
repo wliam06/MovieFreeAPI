@@ -1,0 +1,9 @@
+language: objective-c
+osx_image: xcode11.1
+before_install:
+ - cd Example
+ - pod repo update
+install:
+ - pod install
+script:
+ - xcodebuild clean build -workspace "MovieSDK.xcworkspace" -scheme "MovieSDK.xcworkspace" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8,OS=13.1' -quiet
