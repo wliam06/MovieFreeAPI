@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'MovieSDK_Example' do
+  pod 'MovieSDK', :path => '../'
+
+  target 'MovieSDK_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase' , '~> 2.1.4'
+  end
+end

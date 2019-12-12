@@ -1,0 +1,6 @@
+framework module Pods_MovieSDK_Example {
+  umbrella header "Pods-MovieSDK_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
