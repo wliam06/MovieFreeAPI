@@ -170,7 +170,7 @@
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				641E34C1936CF34CDBA5D660 /* [CP] Embed Pods Frameworks */,
+				60DB5E9535816AB8EAB4026A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -281,17 +281,19 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MovieSDK_Tests/Pods-MovieSDK_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		641E34C1936CF34CDBA5D660 /* [CP] Embed Pods Frameworks */ = {
+		60DB5E9535816AB8EAB4026A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MovieSDK_Example/Pods-MovieSDK_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/MovieSDK/MovieSDK.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MovieSDK.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

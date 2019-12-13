@@ -1,10 +1,12 @@
 PODS:
+  - Alamofire (4.9.1)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - MovieSDK (0.1.0)
+  - MovieSDK (0.1.0):
+    - Alamofire
 
 DEPENDENCIES:
   - FBSnapshotTestCase (~> 2.1.4)
@@ -12,6 +14,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - FBSnapshotTestCase
 
 EXTERNAL SOURCES:
@@ -19,9 +22,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  MovieSDK: f6fed3d25182ed8f423e58a7918954451e71f91e
+  MovieSDK: 0875c1784b94d4af2c759f71edb10eae3f934dd6
 
-PODFILE CHECKSUM: 0d13f202770042ffe8abbe8f562ac189bb049cda
+PODFILE CHECKSUM: a2a75e8823c2a04205c95e73b5408c42c8c08e17
 
 COCOAPODS: 1.8.4
