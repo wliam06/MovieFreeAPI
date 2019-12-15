@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MovieSDK'
-  s.version          = '0.1.0'
+  s.version          = '1.0.0'
   s.summary          = 'A short description of MovieSDK.'
 
 # This description is used to generate tags and improve search results.
@@ -26,12 +26,10 @@ TODO: Add long description of the pod here.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'William' => 'will.liiam06@gmail.com' }
   s.source           = { :git => 'https://github.com/William/MovieSDK.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   s.source_files = 'MovieSDK/Classes/**/*'
-  
   # s.resource_bundles = {
   #   'MovieSDK' => ['MovieSDK/Assets/*.png']
   # }
