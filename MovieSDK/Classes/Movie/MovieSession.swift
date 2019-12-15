@@ -16,12 +16,20 @@ open class MovieSession {
     #endif
   }
 
-  // Get latest movie
-  open func latestMovie() {
-    
+  /// List of Movie (Latest, Now Playing, Popular, Top Rated, Upcoming)
+  /// - Parameter movieList: Choose list of movie
+  /// - Parameter onComplete: Movie Response
+  /// - Parameter onFailure: Invalid Movie Response
+  open func movieList(movieList: MovieListPath, onComplete: onComplete?, onFailure: onFailure?) {
+
+    ServiceManager.api.load(urlPath: movieList.path, method: .GET) { (data, error) in
+      if let error = error {
+        onFailure?(error)
+        return
+      }
+
+      onComplete?(data)
+    }
   }
-  // Get upcoming movie
-  // Get popular movie
-  // Get topRated movie
-  // Get upcoming movie
+
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 struct Constants {
-  static let baseURL = "https://api.themoviedb.org/3"
+  static let baseURL = "https://api.themoviedb.org/3/"
 
   // network
   static let networkMessage = "An Error occurred during connection. Please try again."

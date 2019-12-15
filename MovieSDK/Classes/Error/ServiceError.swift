@@ -7,6 +7,8 @@
 
 import Foundation
 
+public typealias onFailure = (ServiceError?) -> Void
+
 enum ServiceErrorType: Error, Equatable {
   case err(message: String)
   case network
@@ -14,7 +16,7 @@ enum ServiceErrorType: Error, Equatable {
   case unexpected
 }
 
-struct ServiceError: Error, Equatable {
+public struct ServiceError: Error, Equatable {
   let type: ServiceErrorType
 
   var message: String {

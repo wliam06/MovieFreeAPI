@@ -7,27 +7,63 @@
 
 import Foundation
 
+public typealias onComplete = (Any?) -> Void
+
 public class ServiceManager {
   private let session: ServiceSession
-  private static var sharedInstance: ServiceManager?
 
-  public static var header = ["Content-Type": "application/json"]
+  public class var api: ServiceManager {
+    if let sharedInstance = self.sharedInstance {
+      return sharedInstance
+    }
 
-  /// Initialize ServiceSession
-  init(session: ServiceSession = URLSession.shared) {
-    self.session = session
+    fatalError("ServiceManager is not initialized")
   }
 
-  func load(apiKey: String, method: HTTPMethod, body: [String: Any]? = nil,
-            completion: @escaping(Any?, ServiceError?) -> Void) {
-    guard let url = URL(string: Constants.baseURL + apiKey) else {
+  private static var sharedInstance: ServiceManager?
+  public static var header = ["Content-Type": "application/json"]
+  private var baseURL: URL!
+
+  /// Initialize ServiceSession
+  init(session: ServiceSession = URLSession.shared, baseURL: URL) {
+    self.session = session
+    self.baseURL = baseURL
+  }
+
+  /// Start MovieSDK
+  /// - Parameter apiKey: insert your movie api key, [Get The Movie DB  API Key here](https://www.themoviedb.org)
+  public class func start(apiKey: String) {
+    guard var urlComponents = URLComponents(string: Constants.baseURL) else {
       #if DEBUG
       debugPrint("Invalid load url")
       #endif
       return
     }
 
-    var urlRequest = URLRequest(url: url)
+    let queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
+    urlComponents.queryItems = queryItems
+
+    guard let url = urlComponents.url else {
+      debugPrint("Invalid load url")
+      return
+    }
+
+    if sharedInstance == nil {
+      sharedInstance = ServiceManager(session: URLSession.shared, baseURL: url)
+    }
+  }
+
+  
+  /// Load network requesting
+  /// - Parameter urlPath: The Movie DB url path
+  /// - Parameter method: The Movie DB network request method
+  /// - Parameter body: The Movie DB url body or params
+  /// - Parameter completion: The Movie DB respond data and error
+  func load(urlPath: String, method: HTTPMethod, body: [String: Any]? = nil,
+            completion: @escaping(Any?, ServiceError?) -> Void) {
+    baseURL.appendPathComponent(urlPath)
+
+    var urlRequest = URLRequest(url: baseURL)
     urlRequest.httpMethod = method.rawValue
     urlRequest.allHTTPHeaderFields = ServiceManager.header
 
