@@ -14,21 +14,6 @@ public enum MovieListPath: Equatable {
   case topRated
   case upcoming
 
-  var method: HTTPMethod {
-    switch self {
-    case .latest:
-      return .GET
-    case .nowPlaying:
-      return .GET
-    case .popular:
-      return .GET
-    case .topRated:
-      return .GET
-    case .upcoming:
-      return .GET
-    }
-  }
-
   var path: String {
     switch self {
     case .latest:
