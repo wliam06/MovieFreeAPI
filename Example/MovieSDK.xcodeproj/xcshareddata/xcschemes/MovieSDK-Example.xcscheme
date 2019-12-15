@@ -61,6 +61,16 @@
                ReferencedContainer = "container:MovieSDK.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5EFDA1BC23A6781800A72F05"
+               BuildableName = "MovieSDK_Tests.xctest"
+               BlueprintName = "MovieSDK_Tests"
+               ReferencedContainer = "container:MovieSDK.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

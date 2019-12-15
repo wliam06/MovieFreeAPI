@@ -1,6 +1,6 @@
 {
   "name": "MovieSDK",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "summary": "A short description of MovieSDK.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/William/MovieSDK",
@@ -13,15 +13,10 @@
   },
   "source": {
     "git": "https://github.com/William/MovieSDK.git",
-    "tag": "0.1.0"
+    "tag": "1.0.0"
   },
   "platforms": {
     "ios": "9.0"
   },
-  "source_files": "MovieSDK/Classes/**/*",
-  "dependencies": {
-    "Alamofire": [
-
-    ]
-  }
+  "source_files": "MovieSDK/Classes/**/*"
 }
