@@ -48,11 +48,15 @@ public class ServiceManager {
   /// - Parameter completion: The Movie DB respond data and error
   func load(urlPath: String, queryItems: [String: String]? = [:], method: HTTPMethod, body: [String: Any]? = nil,
             completion: @escaping(Any?, ServiceError?) -> Void) {
-    baseURL.appendPathComponent(urlPath)
+    guard var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: false) else { return }
+    components.path = "/3/\(urlPath)"
 
-    let finalURL = baseURL.appending(queryItems ?? [:], value: baseURL.absoluteString)
+    guard let url = components.url else { return }
 
-    var urlRequest = URLRequest(url: finalURL!)
+    // Append query items
+    url.appending(queryItems ?? [:], value: baseURL.absoluteString)
+
+    var urlRequest = URLRequest(url: url)
     urlRequest.httpMethod = method.rawValue
     urlRequest.allHTTPHeaderFields = ServiceManager.header
 
@@ -60,9 +64,11 @@ public class ServiceManager {
       urlRequest.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
     }
 
-    debugPrint("########################### REQUEST URL ###########################")
-    debugPrint(urlRequest.url)
-    debugPrint("###########################")
+    #if DEBUG
+    debugPrint("###########################-------- REQUEST URL --------###########################")
+    debugPrint(urlRequest.url!)
+    debugPrint("#############--------##############")
+    #endif
 
     session.load(url: urlRequest) { (data, response, error) in
       var serviceErrorType = ServiceErrorType.network

@@ -15,15 +15,11 @@ extension URL {
     var queryItem: URLQueryItem!
 
     for item in queryItems {
-      debugPrint("ITEMS", item.key)
-      debugPrint("VALUE", item.value)
       queryItem = URLQueryItem(name: item.key, value: item.value)
       items.append(queryItem)
     }
 
-//    items.append(queryItem)
     urlComponents?.queryItems = items
-//    urlComponents?.queryItems = queryItems.map({ element in URLQueryItem(name: element.key, value: element.value) })
     return urlComponents?.url
   }
 }
