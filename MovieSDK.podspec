@@ -10,13 +10,6 @@ Pod::Spec.new do |s|
   s.name             = 'MovieSDK'
   s.version          = '1.0.0'
   s.summary          = 'A short description of MovieSDK.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
   s.description      = <<-DESC
 TODO: Add long description of the pod here.
                        DESC
@@ -25,10 +18,8 @@ TODO: Add long description of the pod here.
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'William' => 'will.liiam06@gmail.com' }
-  s.source           = { :git => 'https://github.com/William/MovieSDK.git', :tag => s.version.to_s }
-
+  s.source           = { :git => 'git@github.com:wliam06/MovieFreeAPI.git', :tag => s.version.to_s }
   s.ios.deployment_target = '9.0'
-
   s.source_files = 'MovieSDK/Classes/**/*'
   # s.resource_bundles = {
   #   'MovieSDK' => ['MovieSDK/Assets/*.png']
