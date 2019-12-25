@@ -7,7 +7,8 @@
 
 import Foundation
 
-public typealias onComplete = (Any?) -> Void
+typealias ResponseHandler = (Any?, ServiceError?) -> Void
+public typealias CompletionHandler = (Result<[String: Any], ServiceError>) -> Void
 
 public class ServiceManager {
   private let session: ServiceSession
@@ -47,7 +48,7 @@ public class ServiceManager {
   /// - Parameter body: The Movie DB url body or params
   /// - Parameter completion: The Movie DB respond data and error
   func load(urlPath: String, queryItems: [String: String]? = [:], method: HTTPMethod, body: [String: Any]? = nil,
-            completion: @escaping(Any?, ServiceError?) -> Void) {
+            completion: @escaping(Data?, ServiceError?) -> Void) {
     guard var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: false) else { return }
     components.path = "/3/\(urlPath)"
 
@@ -89,11 +90,11 @@ public class ServiceManager {
             serviceErrorType = .err(message: Constants.unexpectedError)
           }
 
-          completion(json, ServiceError(type: serviceErrorType))
+          completion(data, ServiceError(type: serviceErrorType))
           return
         }
 
-        completion(json, nil)
+        completion(data, nil)
       } catch {
         serviceErrorType = .invalid
         completion(nil, ServiceError(type: serviceErrorType))

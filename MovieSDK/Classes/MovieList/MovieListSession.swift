@@ -19,14 +19,14 @@ open class MovieListSession {
   /// Get the most newly created movie
   /// - Parameter onComplete: Movie Response
   /// - Parameter onFailure: Invalid Movie Response
-  open func latestMovie(onComplete: onComplete?, onFailure: onFailure?) {
+  open func latestMovie(completion: @escaping CompletionHandler) {
     ServiceManager.api.load(urlPath: MovieListPath.latest.path, method: .GET) { (data, error) in
       if let error = error {
-        onFailure?(error)
+        completion(.failure(error))
         return
       }
 
-      onComplete?(data)
+//      completion(.success(data))
     }
   }
 
@@ -35,16 +35,28 @@ open class MovieListSession {
   /// - Parameter onComplete: Movie Response
   /// - Parameter onFailure: Invalid Movie Response
   open func listOfMove(movie: MovieListPath, page: String = "1", language: String = "en-US",
-                       region: String = "", onComplete: onComplete?, onFailure: onFailure?) {
+                       region: String = "", completion: @escaping CompletionHandler) {
     let param: [String: String] = ["language": language, "page": page, "region": region]
 
     ServiceManager.api.load(urlPath: movie.path, queryItems: param, method: .GET, body: nil) { (data, error) in
       if let error = error {
-        onFailure?(error)
+        completion(.failure(error))
         return
       }
 
-      onComplete?(data)
+      guard let data = data else { return }
+      let decoder = JSONDecoder()
+
+      do {
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        let movieResponse = try decoder.decode(MoviesResponse.self, from: data)
+
+        if let dict = movieResponse.dictionary as? [String: Any] {
+          completion(.success(dict))
+        }
+      } catch {
+        completion(.failure(ServiceError(type: .invalid)))
+      }
     }
-  }
+  }  
 }
