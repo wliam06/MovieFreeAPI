@@ -7,11 +7,11 @@
 
 import Foundation
 
-public enum MovieListPath: Equatable {
+public enum MovieListPath: String {
   case latest
-  case nowPlaying
+  case nowPlaying = "now playing"
   case popular
-  case topRated
+  case topRated = "top rated"
   case upcoming
 
   var path: String {
