@@ -16,20 +16,6 @@ open class MovieListSession {
     #endif
   }
 
-  /// Get the most newly created movie
-  /// - Parameter onComplete: Movie Response
-  /// - Parameter onFailure: Invalid Movie Response
-  open func latestMovie(completion: @escaping CompletionHandler) {
-    ServiceManager.api.load(urlPath: MovieListPath.latest.path, method: .GET) { (data, error) in
-      if let error = error {
-        completion(.failure(error))
-        return
-      }
-
-//      completion(.success(data))
-    }
-  }
-
   /// Get List of Movies in theatres (Latest, Now Playing, Popular, Top Rated, Upcoming)
   /// - Parameter movieList: Choose list of movie
   /// - Parameter onComplete: Movie Response
