@@ -10,7 +10,6 @@ import Foundation
 open class MovieDetailSession {
   public init() {}
 
-  
   /// Detail of Movie
   /// - Parameters:
   ///   - id: Movie id
@@ -31,6 +30,8 @@ open class MovieDetailSession {
       decoder.keyDecodingStrategy = .convertFromSnakeCase
 
       do {
+        let jsonSerialize = try JSONSerialization.jsonObject(with: data, options: [])
+        debugPrint("JSON SERIALIZE", jsonSerialize)
         let movieDetailResponse = try decoder.decode(MovieDetailResponse.self, from: data)
         if let dict = movieDetailResponse.dictionary {
           completion(.success(dict))
