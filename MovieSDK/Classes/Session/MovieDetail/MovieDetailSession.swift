@@ -10,7 +10,6 @@ import Foundation
 open class MovieDetailSession {
   public init() {}
 
-  
   /// Detail of Movie
   /// - Parameters:
   ///   - id: Movie id
