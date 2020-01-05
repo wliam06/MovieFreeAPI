@@ -26,8 +26,8 @@ open class MovieListSession {
   /// Get List of Movies in theatres (Latest, Now Playing, Popular, Top Rated, Upcoming)
   /// - Parameter completion: Movie Response contains success and failed response
   open func listOfMove(movie: MovieListPath, page: String = "1", language: String = "en-US",
-                       region: String = "", completion: @escaping CompletionHandler) {
-    let param: [String: String] = ["language": language, "page": page, "region": region]
+                       completion: @escaping CompletionHandler) {
+    let param: [String: String] = ["language": language, "page": page]
 
     ServiceManager.api.load(urlPath: movie.path, queryItems: param, method: .GET, body: nil) { (data, error) in
       if let error = error {

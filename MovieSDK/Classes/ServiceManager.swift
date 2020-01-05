@@ -35,7 +35,7 @@ public class ServiceManager {
   /// - Parameter apiKey: insert your movie api key, [Get The Movie DB  API Key here](https://www.themoviedb.org)
   public class func start(apiKey: String) {
     guard let url = URL(string: Constants.baseURL),
-      let finalURL = url.appending(["api_key": apiKey], value: Constants.baseURL) else { return }
+      let finalURL = url.appending(queryItems: ["api_key": apiKey], value: Constants.baseURL) else { return }
 
     if sharedInstance == nil {
       sharedInstance = ServiceManager(session: URLSession.shared, baseURL: finalURL)
@@ -49,13 +49,14 @@ public class ServiceManager {
   /// - Parameter completion: The Movie DB respond data and error
   func load(urlPath: String, queryItems: [String: String]? = [:], method: HTTPMethod, body: [String: Any]? = nil,
             completion: @escaping(Data?, ServiceError?) -> Void) {
-    guard var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: false) else { return }
-    components.path = "/3/\(urlPath)"
-
-    guard let url = components.url else { return }
+    guard var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: false),
+      var url = components.url else { return }
 
     // Append query items
-    url.appending(queryItems ?? [:], value: baseURL.absoluteString)
+    if queryItems?.isEmpty == false,
+      let queryItem = url.appending(urlPath, queryItems: queryItems ?? [:], value: baseURL.absoluteString) {
+      url = queryItem
+    }
 
     var urlRequest = URLRequest(url: url)
     urlRequest.httpMethod = method.rawValue
@@ -66,9 +67,9 @@ public class ServiceManager {
     }
 
     #if DEBUG
-    debugPrint("###########################-------- REQUEST URL --------###########################")
+    debugPrint("############### REQUEST URL ###############")
     debugPrint(urlRequest.url!)
-    debugPrint("#############--------##############")
+    debugPrint("###########################################")
     #endif
 
     session.load(url: urlRequest) { (data, response, error) in

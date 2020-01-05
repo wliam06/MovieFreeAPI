@@ -8,8 +8,11 @@
 import Foundation
 
 extension URL {
-  func appending(_ queryItems: [String: String], value: String) -> URL? {
+  func appending(_ path: String? = "", queryItems: [String: String], value: String) -> URL? {
     var urlComponents = URLComponents(string: value)
+    if let urlPath = path {
+      urlComponents?.path = "/3/\(urlPath)"
+    }
 
     var items: [URLQueryItem] = urlComponents?.queryItems ?? []
     var queryItem: URLQueryItem!
@@ -20,6 +23,7 @@ extension URL {
     }
 
     urlComponents?.queryItems = items
+
     return urlComponents?.url
   }
 }
