@@ -5,11 +5,18 @@
 [![License](https://img.shields.io/cocoapods/l/MovieSDK.svg?style=flat)](https://github.com/wliam06/MovieFreeAPI/blob/master/LICENSE)
 [![Platform](https://img.shields.io/cocoapods/p/MovieSDK.svg?style=flat)](https://cocoapods.org/pods/MovieSDK)
 
-## Example
+## Intro
+Welcome to MovieSDK APi. MovieSDK is created to make easier for developers for accessing [MovieDB](www.themoviedb.org) which included its configuration too. The developers only needs an `API_KEY` to request the sources, to more detail about the implementation click [Sample](https://github.com/wliam06/MVVM-MovieDB). In this case, there are several endpoints are ready to use such as:
+ - List of movie ( Now Playing, Popular, Top Rated, Upcoming).
+ - Detail of movie
+ - Video of movie
+ - Search of movie 
 
+## Procedure
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
+Deployment target `iOS 9.3` and written in `Swift 4`
 
 ## Installation
 

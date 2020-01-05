@@ -57,13 +57,13 @@ public struct MovieResult: Codable {
   public let voteCount: Int
   public let tagline: String?
   public let genreIds: [Int]?
-  public let videos: MovieVideoResponse?
   public let credits: MovieCreditResponse?
   public let adult: Bool
   public let runtime: Int?
 }
 
 public struct MovieVideoResponse: Codable {
+  public let id: Int
   public let results: [MovieVideo]
 }
 
