@@ -16,7 +16,7 @@ open class Movies {
   /// - Parameter page (optional): Movie list of page, by default page is `1`
   /// - Parameter language (optional): Movie language description, by default language is `en-US`
   /// - Parameter completion: Movie response contains success and failed (error)
-  open func listOfMovie(movie: MovieListPath, page: String = "1", language: String = "en-US",
+  open func listOfMovie(movie: MoviePath, page: String = "1", language: String = "en-US",
                        completion: @escaping CompletionHandler) {
     let param: [String: String] = ["language": language, "page": page]
 
@@ -27,10 +27,11 @@ open class Movies {
       }
 
       guard let data = data else { return }
+
       let decoder = JSONDecoder()
+      decoder.keyDecodingStrategy = .convertFromSnakeCase
 
       do {
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
         let movieResponse = try decoder.decode(MoviesResponse.self, from: data)
 
         if let dict = movieResponse.dictionary {
@@ -46,12 +47,12 @@ open class Movies {
   
   /// Detail of Movie
    /// - Parameters:
-   ///   - id: Movie id
-   ///   - language (optional): Choose language based on region, ex: `en-us`
-   ///   - completion: Movie response contains success and failed (error)
+   ///   - Parameter id: Movie id
+   ///   - Parameter language (optional): Choose language based on region, ex: `en-us`
+   ///   - Parameter completion: Movie response contains success and failed (error)
    open func detailOfMovie(withID id: Int, language: String = "en-US", completion: @escaping CompletionHandler) {
      let param: [String: String] = ["language": language]
-     let path = MovieDetailPath.movieDetail(movieID: id).path
+     let path = MoviePath.detail(movieID: id).path
 
      ServiceManager.api.load(urlPath: path, queryItems: param, method: .GET, body: nil) { (data, error) in
        if let error = error {
@@ -75,4 +76,35 @@ open class Movies {
      }
    }
 
+  
+  /// Movie trailer
+  /// - Parameter id: Movie id
+  /// - Parameter language (optional): Choose language based on region, ex: `en-us`
+  /// - Parameter completion: Movie response contains success and failed (error)
+  open func videoOfMovie(withID id: Int, language: String = "en-US", completion: @escaping CompletionHandler) {
+    let param: [String: String] = ["language": language]
+    let path = MoviePath.video(movieID: id).path
+
+    ServiceManager.api.load(urlPath: path, queryItems: param, method: .GET, body: nil) { (data, error) in
+      if let error = error {
+        completion(.failure(error))
+        return
+      }
+
+      guard let data = data else { return }
+
+      let decoder = JSONDecoder()
+      decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+      do {
+        let movieVideo = try decoder.decode(MovieVideoResponse.self, from: data)
+        if let dict = movieVideo.dictionary {
+          completion(.success(dict))
+        }
+      } catch {
+        completion(.failure(ServiceError(type: .invalid)))
+      }
+      
+    }
+  }
 }
