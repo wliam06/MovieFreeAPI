@@ -107,4 +107,38 @@ open class Movies {
       
     }
   }
+
+  
+  /// Search Movie by Keyword
+  /// - Parameter keyword: Movie keyword to search
+  /// - Parameter page (optional): Movie list of page, by default page is `1`
+  /// - Parameter language (optional): Movie language description, by default language is `en-US`
+  /// - Parameter completion: Movie response contains success and failed (error)
+  open func searchOfMovie(keyword: String, page: String = "1",
+                          language: String = "en-US", completion: @escaping CompletionHandler) {
+    let param: [String: String] = ["query": keyword, "page": page, "language": language]
+    let path = SearchPath.search.path
+
+    ServiceManager.api.load(urlPath: path, queryItems: param, method: .GET, body: nil) { (data, error) in
+      if let error = error {
+        completion(.failure(error))
+        return
+      }
+
+      guard let data = data else { return }
+
+      let decoder = JSONDecoder()
+      decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+      do {
+        let movieResponse = try decoder.decode(MoviesResponse.self, from: data)
+        if let dict = movieResponse.dictionary {
+          completion(.success(dict))
+        }
+      } catch {
+        completion(.failure(ServiceError(type: .invalid)))
+      }
+
+    }
+  }
 }

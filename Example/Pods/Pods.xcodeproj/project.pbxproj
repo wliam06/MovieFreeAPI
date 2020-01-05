@@ -21,6 +21,7 @@
 		5E41E2E723BA1A8600056CCE /* Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E41E2E623BA1A8600056CCE /* Decodable.swift */; };
 		5E9A701623B1D14700852605 /* MovieList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9A701523B1D14700852605 /* MovieList.swift */; };
 		5E9A701823B1E10E00852605 /* CodableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9A701723B1E10E00852605 /* CodableExtensions.swift */; };
+		5EA6301323C1CBD4005AF8C6 /* SearchPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6301223C1CBD4005AF8C6 /* SearchPath.swift */; };
 		5EAB71AB23B4641A0039DE2B /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB71AA23B4641A0039DE2B /* MovieDetail.swift */; };
 		5EAB71B623B489920039DE2B /* MoviePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB71B223B489920039DE2B /* MoviePath.swift */; };
 		5EABCC8923B0A5F20061D078 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EABCC8723B0A5F20061D078 /* Constants.swift */; };
@@ -91,6 +92,7 @@
 		5E601BD54DA9BF4071437E60125281FA /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		5E9A701523B1D14700852605 /* MovieList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieList.swift; sourceTree = "<group>"; };
 		5E9A701723B1E10E00852605 /* CodableExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableExtensions.swift; sourceTree = "<group>"; };
+		5EA6301223C1CBD4005AF8C6 /* SearchPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPath.swift; sourceTree = "<group>"; };
 		5EAB71AA23B4641A0039DE2B /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
 		5EAB71B223B489920039DE2B /* MoviePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviePath.swift; sourceTree = "<group>"; };
 		5EABCC8723B0A5F20061D078 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				5EAB71B223B489920039DE2B /* MoviePath.swift */,
+				5EA6301223C1CBD4005AF8C6 /* SearchPath.swift */,
 			);
 			path = Path;
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 				5E4025D423C1BF920042B34B /* MovieSession.swift in Sources */,
 				5EAB71AB23B4641A0039DE2B /* MovieDetail.swift in Sources */,
 				3601970F43749D7E938801A703BD87AA /* HTTPMethod.swift in Sources */,
+				5EA6301323C1CBD4005AF8C6 /* SearchPath.swift in Sources */,
 				5E41E2E723BA1A8600056CCE /* Decodable.swift in Sources */,
 				F17FE56AB6B1BA809CDA00F21F1BEFA2 /* MovieSDK-dummy.m in Sources */,
 				5EFDA1CF23A68E8A00A72F05 /* URLExtension.swift in Sources */,
