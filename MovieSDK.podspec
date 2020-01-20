@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MovieSDK'
-  s.version          = '1.0.1'
+  s.version          = '1.0.2'
   s.summary          = 'MovieSDK is a open public APi from www.themoviedb.org '
   s.description      = <<-DESC
                        "MovieSDK is a free access SDK and ready to used. To get API_KEY, just register in this link www.themoviedb.org"
